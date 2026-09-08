@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Perguntas</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>❓ Perguntas</h1>
+
+    <a href="index.html">
+        🏠 Início
+    </a>
+
+</header>
+
+
+<main>
+
+    <h2>
+        Envie sua pergunta
+    </h2>
+
+    <form id="perguntaForm">
+
+        <textarea
+            id="pergunta"
+            placeholder="Digite sua pergunta..."
+            rows="5"
+            required
+        ></textarea>
+
+        <button type="submit">
+            Enviar pergunta
+        </button>
+
+    </form>
+
+
+    <h2>
+        Perguntas enviadas
+    </h2>
+
+    <div id="listaPerguntas"></div>
+
+</main>
+
+
+<script>
+
+const form =
+    document.getElementById("perguntaForm");
+
+const lista =
+    document.getElementById("listaPerguntas");
+
+
+function carregarPerguntas() {
+
+    const perguntas =
+        JSON.parse(
+            localStorage.getItem("perguntas")
+        ) || [];
+
+    lista.innerHTML = "";
+
+    perguntas.forEach(function(item) {
+
+        lista.innerHTML += `
+
+            <article class="aviso">
+
+                <h3>
+                    ❓ Pergunta
+                </h3>
+
+                <p>
+                    ${item.texto}
+                </p>
+
+                <small>
+                    Status: ${item.status}
+                </small>
+
+            </article>
+
+        `;
+
+    });
+
+}
+
+
+form.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        const texto =
+            document.getElementById("pergunta").value;
+
+        const perguntas =
+            JSON.parse(
+                localStorage.getItem("perguntas")
+            ) || [];
+
+
+        perguntas.push({
+
+            texto: texto,
+
+            status: "Pendente"
+
+        });
+
+
+        localStorage.setItem(
+            "perguntas",
+            JSON.stringify(perguntas)
+        );
+
+
+        form.reset();
+
+        carregarPerguntas();
+
+    }
+);
+
+
+carregarPerguntas();
+
+</script>
+
+</body>
+
+</html>
 

@@ -1,1 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Perfil</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>👤 Meu Perfil</h1>
+
+    <a href="index.html">
+        🏠 Início
+    </a>
+
+</header>
+
+
+<main>
+
+    <section class="boas-vindas">
+
+        <h2>
+            Informações do usuário
+        </h2>
+
+        <p id="perfilUsuario"></p>
+
+        <p id="perfilTipo"></p>
+
+    </section>
+
+</main>
+
+
+<script>
+
+const email =
+    localStorage.getItem("usuarioEmail");
+
+const tipo =
+    localStorage.getItem("tipoUsuario");
+
+
+document.getElementById(
+    "perfilUsuario"
+).innerHTML =
+    `<strong>E-mail:</strong> ${email}`;
+
+
+document.getElementById(
+    "perfilTipo"
+).innerHTML =
+    `<strong>Tipo:</strong> ${tipo}`;
+
+</script>
+
+</body>
+
+</html>
